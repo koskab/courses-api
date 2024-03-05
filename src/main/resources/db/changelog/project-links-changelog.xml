@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="create_projects_links_table" author="koskab">
+        <createTable tableName="project_links">
+            <column name="project_id" type="bigint">
+                <constraints foreignKeyName="fk_project_id__to__projects" references="projects(id)"/>
+            </column>
+            <column name="url" type="varchar(200)">
+                <constraints nullable="false"></constraints>
+            </column>
+        </createTable>
+        <sql> CREATE UNIQUE INDEX ux_project_id_url on project_links(project_id, url)</sql>
+    </changeSet>
+</databaseChangeLog>

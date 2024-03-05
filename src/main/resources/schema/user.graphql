@@ -1,0 +1,61 @@
+# ENDPOINTS
+
+extend type Mutation {
+    createUser(input: UserCreateInput!): UserCreatePayload!
+    authenticate(input: UserSignInInput!) : UserSignInPayload!
+    logout: Boolean
+    updateUser(id: Long!, input: UserUpdateInput!): UserUpdatePayload!
+}
+
+extend type Query {
+    currentUser: User!
+}
+
+# TYPES - INPUTS - ENUMS
+
+enum Role {
+    ROLE_STUDENT
+    ROLE_ADMIN
+}
+
+type User {
+    id: Long!
+    fullName: String!
+    email: String!
+    birthdate: Date!
+}
+
+input UserCreateInput {
+    fullName: String!
+    email: String!
+    password: String!
+    rePassword: String!
+    birthdate: Date!
+}
+
+input UserUpdateInput {
+    oldPassword: String!
+    fullName: String!
+    password: String
+    rePassword: String
+    birthdate: Date!
+}
+
+input UserSignInInput {
+    email: String!
+    password: String!
+}
+
+# PAYLOADS
+
+type UserCreatePayload {
+    id: Long!
+}
+
+type UserSignInPayload {
+    accessToken: String
+}
+
+type UserUpdatePayload {
+    id: Long!
+}

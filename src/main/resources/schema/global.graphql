@@ -1,0 +1,14 @@
+# SCALARS
+
+scalar Date
+scalar DateTime
+scalar Long
+scalar BigDecimal
+
+# BASE QUERY AND MUTATION
+
+type Query {
+}
+
+type Mutation {
+}

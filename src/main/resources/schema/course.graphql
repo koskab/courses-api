@@ -1,0 +1,67 @@
+#ENDPOINTS
+
+extend type Mutation {
+    createCourse(input: CourseEditInput!): CourseCreatePayload!
+    updateCourse(id: Long! input: CourseEditInput!): CourseUpdatePayload!
+    deleteCourse(id: Long!): CourseDeletePayload!
+    signUpUser(courseId: Long!): SignUpPayload!
+    signOffUser(courseId: Long!): SignOffPayload!
+}
+
+extend type Query {
+    course(id: Long!): Course!
+    courses(page: Int! size: Int! search: CourseSearch): CoursePage!
+}
+
+#TYPES-INPUT-ENUMS
+
+type Course {
+    id: Long!
+    name: String!
+    description: String
+    price: BigDecimal
+    duration: Int!
+}
+
+type CoursePage {
+    content: [Course]
+    totalElements: Int!
+}
+
+input CourseEditInput {
+    name: String!
+    description: String
+    price: BigDecimal!
+    duration: Int!
+}
+
+input CourseSearch {
+    name: String
+    description: String
+    priceFrom: BigDecimal
+    priceTo: BigDecimal
+    durationFrom: Int
+    durationTo: Int
+}
+
+#PAYLOADS
+
+type CourseCreatePayload {
+    id: Long!
+}
+
+type CourseUpdatePayload {
+    id: Long!
+}
+
+type CourseDeletePayload {
+    id: Long!
+}
+
+type SignUpPayload {
+    id: Long!
+}
+
+type SignOffPayload {
+    id: Long!
+}

@@ -1,0 +1,39 @@
+#ENDPOINTS
+
+extend type Mutation {
+    createProject(input: ProjectEditInput!): ProjectCreatePayload!
+    updateProject(id: Long! input: ProjectEditInput!): ProjectUpdatePayload!
+    deleteProject(id: Long!): ProjectDeletePayload!
+}
+
+extend type Query {
+    project(id: Long!): Project!
+}
+
+#TYPES-INPUT
+
+type Project {
+    name: String!
+    description: String
+    authorId: Long!
+}
+
+input ProjectEditInput {
+    name: String!
+    description: String!
+    url: [String!]
+}
+
+#PAYLOADS
+
+type ProjectCreatePayload{
+    id: Long!
+}
+
+type ProjectUpdatePayload{
+    id: Long!
+}
+
+type ProjectDeletePayload{
+    id: Long!
+}

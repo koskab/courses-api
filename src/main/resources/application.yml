@@ -1,0 +1,15 @@
+spring:
+  liquibase:
+    enabled: true
+    change-log: classpath:db/changelog/db.changelog-master.xml
+  datasource:
+    url: jdbc:postgresql://localhost:5432/alabs_academy
+    username: postgres
+    password: Qwerty
+
+security:
+  jwt:
+    secret-key: 53A73E5F1C4E0A2D3B5F2D784E6A1B423D6F247D1F6E5C3A596D635A75327855
+    expiration: 86400000
+    refresh-token:
+      expiration: 604800000

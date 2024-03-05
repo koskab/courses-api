@@ -1,0 +1,22 @@
+<?xml version="1.1" encoding="UTF-8" ?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="
+    http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd
+">
+    <changeSet id="create_join_table" author="koskab">
+        <createTable tableName="users_courses">
+            <column name="user_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_user_id__to__users" references="users(id)"/>
+            </column>
+            <column name="course_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_course_id__to__courses" references="courses(id)"/>
+            </column>
+        </createTable>
+        <sql>
+            CREATE UNIQUE INDEX ux_user_id_course_id_on_users_courses ON users_courses(user_id, course_id)
+        </sql>
+    </changeSet>
+</databaseChangeLog>
